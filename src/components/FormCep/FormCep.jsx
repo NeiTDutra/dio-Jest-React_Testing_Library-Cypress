@@ -13,15 +13,16 @@ import axios from 'axios'
 const FormCep = () => {
   const initialAddress = {
     logradouro: '',
-    bairro: ''
+    bairro: '',
+    localidade: ''
   }
   const [ cep, setCep ] = useState('')
   const [ address, setAddress ] = useState(initialAddress)
 
   const fetchCep = async (cep) => {
     const cepResult = await fetch(`https://viacep.com.br/ws/${cep}/json/`)
-    const { logradouro, bairro } = await cepResult.json()
-    setAddress({ logradouro, bairro })
+    const { logradouro, bairro, localidade } = await cepResult.json()
+    setAddress({ logradouro, bairro, localidade })
   }
 
   const handleCepField = value => {
@@ -59,6 +60,16 @@ const FormCep = () => {
             placeholder="logradouro"
             value={address.logradouro}
             onChange={({ target : { value } }) => setAddress({...address, logradouro: value})}
+          />
+        </Box>
+        <Box width={1 / 2} px={2}>
+        <Label htmlFor='localidade'>Localidade</Label>
+          <Input
+            id='localidade'
+            name='localidade'
+            placeholder="localidade"
+            value={address.localidade}
+            onChange={({ target : { value } }) => setAddress({...address, localidade: value})}
           />
         </Box>
       </Flex>

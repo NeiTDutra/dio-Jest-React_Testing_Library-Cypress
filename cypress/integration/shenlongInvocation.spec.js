@@ -2,7 +2,7 @@
 
 context('Shenlong Invation Test', () => {
   before(() => {
-    cy.visit('http://localhost:3000/dragon-ball-manager')
+    cy.visit('http://localhost:3001/dragon-ball-manager')
   })
   it('Should not invocate Shenlong if dont have all dragon balls', () => {
     cy.get('[data-testid="card-shenlong"]').should('exist')
